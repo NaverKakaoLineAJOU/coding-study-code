@@ -9,7 +9,6 @@ public class Main {
 		String name = "AABAAAAAAAAABBB";
 		System.out.println(name+": 11");
 		System.out.println(sol.solution(name));
-		
 
 		name = "BBAAABA";
 		System.out.println(name+": 7");
@@ -23,8 +22,6 @@ public class Main {
 		System.out.println(name+": 10");
 		System.out.println(sol.solution(name));
 		
-		
-
 	}
 
 }
