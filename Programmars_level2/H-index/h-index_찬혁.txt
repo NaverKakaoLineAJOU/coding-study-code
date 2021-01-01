@@ -1,0 +1,55 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+// 함정 : h는 배열의 값 중 하나가 아니어도 된다.
+
+using namespace std;
+int M = -1;  // h max값 담는 변수
+int M_index = -1;
+
+void find_h(int from, int to, int size, vector<int> citations){
+    if(from > to) return;
+    
+    int h = citations[(from+to)/2];
+    
+    if(size - (from+to)/2 >= h ) {
+        M = M > h ? M : h;
+        M_index = M > h ? M_index : (from+to)/2;
+        
+        find_h((from+to)/2 + 1, to, size, citations);
+    }
+    else{
+        find_h(from, (from+to)/2 - 1, size, citations);
+    }
+    
+    
+}
+
+int solution(vector<int> citations) {
+    int answer = 0;
+    
+    sort(citations.begin(), citations.end());
+    
+    //모든 논문인용횟수가 h보다 클 때 ex)[5,6,7], h=3.
+    if(citations.size() < citations[0]){ 
+        for(int h = 1; h < citations[0]; h++){
+            if(citations.size() >= h ) {
+                M = h;
+            }
+        }
+        return M;
+    }
+    
+    find_h(0, citations.size()-1, citations.size(), citations);
+    
+    //h값이 citations 배열 값이 아닐 수도 있기 때문에 
+    for(int h = M+1; h < citations[M_index+1]; h++){
+        if(citations.size() - M_index - 1 >= h ) {
+            M = h;
+        }
+    }
+    
+    answer = M;
+    return answer;
+}
