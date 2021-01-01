@@ -8,6 +8,7 @@ public class main {
 		
 		System.out.println(test.solution("JEROEN"));
 		System.out.println(test.solution("JAN"));
+		System.out.println(test.solution("CANAAAAANAN"));
 	}
 	
 }
