@@ -27,6 +27,7 @@ void leftright_move(string name, int i, int cnt) {
         if (name[(i + k) % len] != 'A' && name[(i - k + len) % len] != 'A') {
             name[(i + k) % len] = 'A';
             leftright_move(name, (i + k) % len, cnt + k);
+            leftright_move(name, (i - k + len) % len, cnt + k);
             break;
         }
         else if (name[(i + k) % len] == 'A' && name[(i - k + len) % len] != 'A') {
