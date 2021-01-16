@@ -1,0 +1,62 @@
+#include <string>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+int solution(vector<int> scoville, int K) {
+    int answer = 0;
+    
+    priority_queue<int, vector<int>, greater<int>> pq;
+    for(int i=0; i<scoville.size(); i++)
+        pq.push(scoville[i]);
+    
+    int a,b;
+    
+    while(pq.top() < K){
+        
+        if(pq.size() == 1)
+            return -1;
+        
+        a = pq.top();
+        pq.pop();
+        b = pq.top();
+        pq.pop();
+        
+        answer++;
+    
+        pq.push(a+2*b);
+    }
+    
+//     int size = scoville.size();
+//     int mixed = 0;
+    
+//     sort(scoville.rbegin(), scoville.rend());
+    
+//     //가장 맵지 않음 음식이 K보다 클 때
+//     if(scoville[scoville.size()-1] >= K)
+//         return 0;
+    
+//     for(int i = 0; i < size-1; i++){
+//         sort(scoville.rbegin(), scoville.rend());
+        
+//         mixed = scoville[scoville.size()-1] + 2*scoville[scoville.size()-2];
+//         if(scoville.size() >=3){
+//             if(mixed >= K && scoville[scoville.size()-3] >= K){
+//                 answer = i+1;
+//                 break;
+//             }
+//         }
+//         else{
+//             if(mixed >= K){
+//                 answer = i+1;
+//                 break;
+//             }
+//         }
+        
+//         scoville.pop_back();
+//         scoville[scoville.size()-1] = mixed;
+//     }
+    
+    return answer;
+}
