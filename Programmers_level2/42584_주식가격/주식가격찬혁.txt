@@ -1,0 +1,21 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+
+vector<int> solution(vector<int> prices) {
+    vector<int> answer; //오르는 시간 저장
+    
+    answer.resize(prices.size(), 0);
+    
+    for(int p = 0; p < prices.size(); p++){
+        for(int i = p+1; i < prices.size(); i++){
+            answer[p]++;
+            if(prices[p] > prices[i])
+                break;
+          }
+    }
+    
+    return answer;
+}
